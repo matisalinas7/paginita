@@ -128,10 +128,8 @@
       }
 
       .music-toggle {
-        position: fixed;
-        right: 1rem;
-        bottom: 1rem;
-        z-index: 60;
+        position: relative;
+        z-index: 1;
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
@@ -142,6 +140,7 @@
         color: #fff;
         box-shadow: 0 20px 35px rgba(15, 23, 42, 0.3);
         font-weight: 700;
+        margin-top: 1.5rem;
         transition:
           transform 0.2s ease,
           box-shadow 0.2s ease;
@@ -209,6 +208,14 @@
         >
           borgueeeeee, con sabor y cumbia.
         </p>
+        <button
+          id="music-toggle"
+          class="music-toggle"
+          type="button"
+          aria-label="Activar música"
+        >
+          🎵 Música
+        </button>
         <div class="mt-10">
           <a
             href="#galeria"
@@ -433,15 +440,6 @@
         type="audio/mpeg"
       />
     </audio>
-
-    <button
-      id="music-toggle"
-      class="music-toggle"
-      type="button"
-      aria-label="Activar música"
-    >
-      🎵 Música
-    </button>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
