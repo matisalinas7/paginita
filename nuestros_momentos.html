@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuestros Momentos | Galería de Amigos</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              marker: ['"Permanent Marker"', "cursive"],
+            },
+            colors: {
+              brand: {
+                100: "#ffe4e6",
+                300: "#fda4af",
+                500: "#f43f5e",
+                700: "#be123c",
+              },
+            },
+            animation: {
+              float: "float 6s ease-in-out infinite",
+              "fade-in": "fadeIn 0.5s ease-out forwards",
+            },
+            keyframes: {
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              fadeIn: {
+                "0%": { opacity: "0", transform: "scale(0.95)" },
+                "100%": { opacity: "1", transform: "scale(1)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom scrollbar for a polished look */
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f5f9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+
+      .masonry-grid {
+        column-count: 1;
+        column-gap: 1.5rem;
+      }
+      @media (min-width: 640px) {
+        .masonry-grid {
+          column-count: 2;
+        }
+      }
+      @media (min-width: 1024px) {
+        .masonry-grid {
+          column-count: 3;
+        }
+      }
+
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800 antialiased font-sans">
+    <header
+      class="relative overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-brand-500 min-h-[60vh] flex items-center justify-center text-center px-4"
+    >
+      <!-- Decorative background shapes -->
+      <div
+        class="absolute top-0 left-0 w-64 h-64 bg-white opacity-10 rounded-full mix-blend-overlay filter blur-3xl animate-float"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-brand-300 opacity-20 rounded-full mix-blend-overlay filter blur-3xl animate-float"
+        style="animation-delay: 2s"
+      ></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto text-white">
+        <span
+          class="uppercase tracking-widest text-sm font-semibold text-brand-100 mb-4 block"
+          >Álbum de Recuerdos</span
+        >
+        <h1
+          class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 font-marker drop-shadow-lg"
+        >
+          Nuestros Momentos
+        </h1>
+        <p
+          class="text-lg md:text-2xl font-light text-white/90 max-w-2xl mx-auto"
+        >
+          Risas, locuras y anécdotas inolvidables. Una colección de las mejores
+          historias compartidas.
+        </p>
+        <div class="mt-10">
+          <a
+            href="#galeria"
+            class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-brand-700 bg-white border border-transparent rounded-full shadow-lg hover:bg-brand-50 hover:scale-105 transition-all duration-300"
+          >
+            Ver Galería
+            <svg
+              class="w-5 h-5 ml-2 -mr-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 14l-7 7m0 0l-7-7m7 7V3"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Bottom curve separator -->
+      <div
+        class="absolute bottom-0 w-full overflow-hidden leading-none rotate-180"
+      >
+        <svg
+          class="relative block w-full h-12"
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+            fill="#f9fafb"
+          ></path>
+        </svg>
+      </div>
+    </header>
+
+    <main id="galeria" class="container mx-auto px-4 py-20 max-w-7xl">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+          La Colección
+        </h2>
+        <p class="mt-4 text-lg text-gray-500">
+          Haz clic en cualquier imagen para verla en pantalla completa.
+        </p>
+      </div>
+
+      <div class="masonry-grid">
+        <!-- Image 1 -->
+        <div
+          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+        >
+          <div class="relative overflow-hidden aspect-auto">
+            <img
+              src="1.png"
+              alt="El cartel de advertencia"
+              class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+            >
+              <div class="p-6">
+                <p class="text-white font-medium text-lg">Prohibido...</p>
+                <p class="text-gray-200 text-sm">
+                  Clásicos carteles en la calle.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image 2 -->
+        <div
+          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+        >
+          <div class="relative overflow-hidden aspect-auto">
+            <img
+              src="2.png"
+              alt="En el hospital"
+              class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+            >
+              <div class="p-6">
+                <p class="text-white font-medium text-lg">Locura Total</p>
+                <p class="text-gray-200 text-sm">Escapando del psiquiátrico.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image 3 (Note: Browsers may not render HEIC natively, included as requested) -->
+        <div
+          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+        >
+          <div class="relative overflow-hidden aspect-auto">
+            <img
+              src="3.jpg"
+              alt="Saludando"
+              class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+              onerror="
+                this.onerror = null;
+                this.src =
+                  'https://placehold.co/600x800/1e293b/ffffff?text=Imagen+HEIC\n(Formatos+no+soportado+nativamente)';
+              "
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+            >
+              <div class="p-6">
+                <p class="text-white font-medium text-lg">Balcón de noche</p>
+                <p class="text-gray-200 text-sm">Buenas vibras.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image 4 -->
+        <div
+          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+        >
+          <div class="relative overflow-hidden aspect-auto">
+            <img
+              src="4.png"
+              alt="Día de playa"
+              class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+            >
+              <div class="p-6">
+                <p class="text-white font-medium text-lg">Playa y Sol</p>
+                <p class="text-gray-200 text-sm">Tirando facha en la arena.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image 5 -->
+        <div
+          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+        >
+          <div class="relative overflow-hidden aspect-auto">
+            <img
+              src="5.png"
+              alt="Grupo en las dunas"
+              class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+            >
+              <div class="p-6">
+                <p class="text-white font-medium text-lg">Aventura nocturna</p>
+                <p class="text-gray-200 text-sm">Todo el grupo reunido.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 ease-in-out bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
+    >
+      <!-- Close button -->
+      <button
+        id="lightbox-close"
+        class="absolute top-4 right-4 sm:top-8 sm:right-8 text-white/70 hover:text-white bg-black/50 hover:bg-black/80 rounded-full p-2 transition-all duration-200 focus:outline-none z-50"
+        aria-label="Cerrar modal"
+      >
+        <svg
+          class="w-8 h-8"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+        </svg>
+      </button>
+
+      <!-- Image container -->
+      <div
+        class="relative max-w-5xl w-full h-full flex items-center justify-center"
+        id="lightbox-content"
+      >
+        <img
+          id="lightbox-img"
+          src=""
+          alt="Imagen ampliada"
+          class="max-w-full max-h-full object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300"
+        />
+      </div>
+    </div>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center mt-12">
+      <p class="font-marker text-xl mb-2 text-white">Nuestros Momentos</p>
+      <p class="text-sm">Creado para los pibes. &copy; 2026</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const triggers = document.querySelectorAll(".gallery-trigger");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const closeBtn = document.getElementById("lightbox-close");
+        const lightboxContent = document.getElementById("lightbox-content");
+
+        // Note: HEIC files might not render in all browsers natively.
+        // The image tags have an onerror handler, but we also ensure the modal shows whatever loaded.
+
+        // Open modal function
+        triggers.forEach((img) => {
+          img.addEventListener("click", (e) => {
+            // Stop background scrolling
+            document.body.style.overflow = "hidden";
+
+            // Set image source
+            lightboxImg.src = e.target.src;
+
+            // Show lightbox
+            lightbox.classList.remove("hidden");
+
+            // Trigger animations (slight delay to ensure display block is applied first)
+            setTimeout(() => {
+              lightbox.classList.remove("opacity-0");
+              lightbox.classList.add("opacity-100");
+              lightboxImg.classList.remove("scale-95");
+              lightboxImg.classList.add("scale-100");
+            }, 10);
+          });
+        });
+
+        // Close modal function
+        const closeModal = () => {
+          // Animate out
+          lightbox.classList.remove("opacity-100");
+          lightbox.classList.add("opacity-0");
+          lightboxImg.classList.remove("scale-100");
+          lightboxImg.classList.add("scale-95");
+
+          // Hide after animation finishes
+          setTimeout(() => {
+            lightbox.classList.add("hidden");
+            document.body.style.overflow = ""; // Restore scrolling
+            lightboxImg.src = ""; // Clear source
+          }, 300); // Matches duration-300
+        };
+
+        // Event listeners for closing
+        closeBtn.addEventListener("click", closeModal);
+
+        // Close when clicking outside the image
+        lightbox.addEventListener("click", (e) => {
+          if (e.target === lightbox || e.target === lightboxContent) {
+            closeModal();
+          }
+        });
+
+        // Close with Escape key
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+            closeModal();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
