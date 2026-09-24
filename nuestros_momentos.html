@@ -46,7 +46,28 @@
       };
     </script>
     <style>
-      /* Custom scrollbar for a polished look */
+      :root {
+        --bg-soft: #f8fafc;
+        --ink: #111827;
+        --muted: #6b7280;
+        --card: rgba(255, 255, 255, 0.7);
+        --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.12);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(255, 196, 0, 0.18),
+            transparent 28%
+          ),
+          linear-gradient(180deg, #fff9db 0%, #fff4b8 20%, #fffdf2 100%);
+      }
+
       ::-webkit-scrollbar {
         width: 10px;
       }
@@ -54,22 +75,24 @@
         background: #f1f5f9;
       }
       ::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 5px;
+        background: linear-gradient(180deg, #fda4af, #fb7185);
+        border-radius: 999px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8;
+        background: #f43f5e;
       }
 
       .masonry-grid {
         column-count: 1;
-        column-gap: 1.5rem;
+        column-gap: 1.25rem;
       }
+
       @media (min-width: 640px) {
         .masonry-grid {
           column-count: 2;
         }
       }
+
       @media (min-width: 1024px) {
         .masonry-grid {
           column-count: 3;
@@ -78,7 +101,83 @@
 
       .masonry-item {
         break-inside: avoid;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .section-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        border: 1px solid rgba(244, 63, 94, 0.18);
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 10px 30px rgba(244, 63, 94, 0.08);
+        border-radius: 999px;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #be123c;
+        backdrop-filter: blur(10px);
+      }
+
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: var(--shadow-soft);
+        backdrop-filter: blur(10px);
+      }
+
+      .music-toggle {
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
+        z-index: 60;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: none;
+        border-radius: 9999px;
+        padding: 0.8rem 1.1rem;
+        background: rgba(17, 24, 39, 0.9);
+        color: #fff;
+        box-shadow: 0 20px 35px rgba(15, 23, 42, 0.3);
+        font-weight: 700;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .music-toggle:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 24px 40px rgba(15, 23, 42, 0.35);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px) scale(0.98);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .reveal,
+        .masonry-item,
+        .gallery-trigger,
+        .hover-lift,
+        .floating-badge {
+          transition: none !important;
+          animation: none !important;
+        }
       }
     </style>
   </head>
@@ -98,25 +197,24 @@
       <div class="relative z-10 max-w-4xl mx-auto text-white">
         <span
           class="uppercase tracking-widest text-sm font-semibold text-brand-100 mb-4 block"
-          >Álbum de Recuerdos</span
+          >Cuarteto obrero</span
         >
         <h1
           class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 font-marker drop-shadow-lg"
         >
-          Nuestros Momentos
+          bor gueee
         </h1>
         <p
           class="text-lg md:text-2xl font-light text-white/90 max-w-2xl mx-auto"
         >
-          Risas, locuras y anécdotas inolvidables. Una colección de las mejores
-          historias compartidas.
+          borgueeeeee, con sabor y cumbia.
         </p>
         <div class="mt-10">
           <a
             href="#galeria"
             class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-brand-700 bg-white border border-transparent rounded-full shadow-lg hover:bg-brand-50 hover:scale-105 transition-all duration-300"
           >
-            Ver Galería
+            bor gueee
             <svg
               class="w-5 h-5 ml-2 -mr-1"
               fill="none"
@@ -155,7 +253,7 @@
     </header>
 
     <main id="galeria" class="container mx-auto px-4 py-20 max-w-7xl">
-      <div class="text-center mb-12">
+      <div class="text-center mb-10 reveal">
         <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">
           La Colección
         </h2>
@@ -167,16 +265,17 @@
       <div class="masonry-grid">
         <!-- Image 1 -->
         <div
-          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          class="masonry-item group rounded-[28px] overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(15,23,42,0.18)]"
         >
           <div class="relative overflow-hidden aspect-auto">
             <img
               src="1.png"
               alt="El cartel de advertencia"
               class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+              loading="lazy"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
             >
               <div class="p-6">
                 <p class="text-white font-medium text-lg">Prohibido...</p>
@@ -190,16 +289,17 @@
 
         <!-- Image 2 -->
         <div
-          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          class="masonry-item group rounded-[28px] overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(15,23,42,0.18)]"
         >
           <div class="relative overflow-hidden aspect-auto">
             <img
               src="2.png"
               alt="En el hospital"
               class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+              loading="lazy"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
             >
               <div class="p-6">
                 <p class="text-white font-medium text-lg">Locura Total</p>
@@ -209,15 +309,16 @@
           </div>
         </div>
 
-        <!-- Image 3 (Note: Browsers may not render HEIC natively, included as requested) -->
+        <!-- Image 3 -->
         <div
-          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          class="masonry-item group rounded-[28px] overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(15,23,42,0.18)]"
         >
           <div class="relative overflow-hidden aspect-auto">
             <img
               src="3.jpg"
               alt="Saludando"
               class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+              loading="lazy"
               onerror="
                 this.onerror = null;
                 this.src =
@@ -225,7 +326,7 @@
               "
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
             >
               <div class="p-6">
                 <p class="text-white font-medium text-lg">Balcón de noche</p>
@@ -237,16 +338,17 @@
 
         <!-- Image 4 -->
         <div
-          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          class="masonry-item group rounded-[28px] overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(15,23,42,0.18)]"
         >
           <div class="relative overflow-hidden aspect-auto">
             <img
               src="4.png"
               alt="Día de playa"
               class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+              loading="lazy"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
             >
               <div class="p-6">
                 <p class="text-white font-medium text-lg">Playa y Sol</p>
@@ -258,16 +360,17 @@
 
         <!-- Image 5 -->
         <div
-          class="masonry-item group rounded-2xl overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+          class="masonry-item group rounded-[28px] overflow-hidden shadow-md bg-white cursor-pointer transform transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(15,23,42,0.18)]"
         >
           <div class="relative overflow-hidden aspect-auto">
             <img
               src="5.png"
               alt="Grupo en las dunas"
               class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110 gallery-trigger"
+              loading="lazy"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
+              class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end"
             >
               <div class="p-6">
                 <p class="text-white font-medium text-lg">Aventura nocturna</p>
@@ -324,6 +427,22 @@
       <p class="text-sm">Creado para los pibes. &copy; 2026</p>
     </footer>
 
+    <audio id="bg-music" loop preload="auto">
+      <source
+        src="Yayo%20y%20el%20Cuarteto%20Obrero%20-%20Carlita.mp3"
+        type="audio/mpeg"
+      />
+    </audio>
+
+    <button
+      id="music-toggle"
+      class="music-toggle"
+      type="button"
+      aria-label="Activar música"
+    >
+      🎵 Música
+    </button>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const triggers = document.querySelectorAll(".gallery-trigger");
@@ -331,59 +450,89 @@
         const lightboxImg = document.getElementById("lightbox-img");
         const closeBtn = document.getElementById("lightbox-close");
         const lightboxContent = document.getElementById("lightbox-content");
+        const music = document.getElementById("bg-music");
+        const musicToggle = document.getElementById("music-toggle");
 
-        // Note: HEIC files might not render in all browsers natively.
-        // The image tags have an onerror handler, but we also ensure the modal shows whatever loaded.
+        const revealItems = document.querySelectorAll(".reveal");
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
 
-        // Open modal function
-        triggers.forEach((img) => {
-          img.addEventListener("click", (e) => {
-            // Stop background scrolling
-            document.body.style.overflow = "hidden";
+        revealItems.forEach((item) => revealObserver.observe(item));
 
-            // Set image source
-            lightboxImg.src = e.target.src;
+        const toggleMusic = async () => {
+          if (!music) return;
 
-            // Show lightbox
-            lightbox.classList.remove("hidden");
+          if (music.paused) {
+            try {
+              await music.play();
+              musicToggle.textContent = "🔇 Pausar";
+              musicToggle.setAttribute("aria-label", "Pausar música");
+            } catch (error) {
+              console.warn(
+                "La música no pudo iniciarse automáticamente:",
+                error,
+              );
+            }
+          } else {
+            music.pause();
+            musicToggle.textContent = "🎵 Música";
+            musicToggle.setAttribute("aria-label", "Activar música");
+          }
+        };
 
-            // Trigger animations (slight delay to ensure display block is applied first)
-            setTimeout(() => {
-              lightbox.classList.remove("opacity-0");
-              lightbox.classList.add("opacity-100");
-              lightboxImg.classList.remove("scale-95");
-              lightboxImg.classList.add("scale-100");
-            }, 10);
+        if (musicToggle) {
+          musicToggle.addEventListener("click", toggleMusic);
+        }
+
+        const openLightbox = (src) => {
+          document.body.style.overflow = "hidden";
+          lightboxImg.src = src;
+          lightbox.classList.remove("hidden");
+
+          requestAnimationFrame(() => {
+            lightbox.classList.remove("opacity-0");
+            lightbox.classList.add("opacity-100");
+            lightboxImg.classList.remove("scale-95");
+            lightboxImg.classList.add("scale-100");
           });
-        });
+        };
 
-        // Close modal function
         const closeModal = () => {
-          // Animate out
           lightbox.classList.remove("opacity-100");
           lightbox.classList.add("opacity-0");
           lightboxImg.classList.remove("scale-100");
           lightboxImg.classList.add("scale-95");
 
-          // Hide after animation finishes
           setTimeout(() => {
             lightbox.classList.add("hidden");
-            document.body.style.overflow = ""; // Restore scrolling
-            lightboxImg.src = ""; // Clear source
-          }, 300); // Matches duration-300
+            document.body.style.overflow = "";
+            lightboxImg.src = "";
+          }, 300);
         };
 
-        // Event listeners for closing
+        triggers.forEach((img) => {
+          img.addEventListener("click", (e) => {
+            openLightbox(e.target.src);
+          });
+        });
+
         closeBtn.addEventListener("click", closeModal);
 
-        // Close when clicking outside the image
         lightbox.addEventListener("click", (e) => {
           if (e.target === lightbox || e.target === lightboxContent) {
             closeModal();
           }
         });
 
-        // Close with Escape key
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
             closeModal();
